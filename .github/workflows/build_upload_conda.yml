@@ -21,8 +21,7 @@ jobs:
           update-conda: true
           python-version: ${{ matrix.python-version }}
           conda-channels: anaconda, conda-forge
-      - name: Conda activate
-          shell: bash -l {0}
-          run: conda init bash
-          run: conda activate test
-          run: conda install conda-build
+      - shell: bash -l {0}
+      - run: conda init bash
+      - run: conda activate test
+      - run: conda install conda-build
