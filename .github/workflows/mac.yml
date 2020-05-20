@@ -34,4 +34,4 @@ jobs:
         echo "path: $PATH"
         conda create -n packaging --channel conda-forge conda-build anaconda-client conda-verify
         conda activate packaging
-        conda-build recipe
+        conda-build --channel conda-forge recipe
