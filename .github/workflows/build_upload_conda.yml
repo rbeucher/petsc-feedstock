@@ -19,11 +19,12 @@ jobs:
         uses: goanpeca/setup-miniconda@v1
         with:
           auto-update-conda: true
-          activate-environment: petsc
           python-version: ${{ matrix.python-version }}
           channels: underworldcode, anaconda, conda-forge
       - name: Initialise Conda
         shell: bash -l {0}
         run: conda install --channel conda-forge conda-build
       - name: Deploy Conda package
-        run: conda-build recipe
+        run: |
+            conda activate test
+            conda-build recipe
