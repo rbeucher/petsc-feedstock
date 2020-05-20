@@ -28,7 +28,6 @@ requirements:
     - {{ compiler('fortran') }}
     - make
     - pkg-config
-    - python
   host:
     - libblas
     - libcblas
@@ -48,6 +47,7 @@ requirements:
     - mumps-mpi
     - suitesparse
     - hdf5
+    - python
   run:
     - {{ mpi }}
     - hypre
