@@ -7,23 +7,16 @@ on:
 
 jobs:
   build:
-    name: Python ${{ matrix.python-version }} example
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        python-version: [3.7]
+    name: Ubuntu Conda Build
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Setup conda
-        uses: goanpeca/setup-miniconda@v1
-        with:
-          auto-update-conda: true
-          python-version: ${{ matrix.python-version }}
-          channels: underworldcode, anaconda, conda-forge
       - name: Initialise Conda
-        shell: bash -l {0}
-        run: conda install --channel conda-forge conda-build
+        run: |
+            conda init "$(basename ${SHELL})"
       - name: Deploy Conda package
-        shell: bash -l {0}
-        run: conda-build recipe
+        run: |
+            source /usr/share/miniconda/etc/profile.d/conda.sh
+            conda create -n test --channel conda-forge conda-build anaconda-client conda-verify
+            conda activate packaging
+            conda-build recipe
