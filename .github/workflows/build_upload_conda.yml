@@ -26,5 +26,6 @@ jobs:
         run: conda install --channel conda-forge conda-build
       - name: Deploy Conda package
         run: |
+            source /usr/share/miniconda/etc/profile.d/conda.sh
             conda activate test
             conda-build recipe
