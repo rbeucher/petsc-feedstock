@@ -7,7 +7,7 @@ on:
     
 jobs:
   conda:
-    name: conda-build
+    name: MacOS conda build
 
     runs-on: macos-latest
 
@@ -20,7 +20,6 @@ jobs:
         tar -xf MacOSX10.9.sdk.tar.xz
         echo 'CONDA_BUILD_SYSROOT:' > conda_build_config.yaml
         echo "  - $GITHUB_WORKSPACE/MacOSX10.9.sdk" >> conda_build_config.yaml
-        # For :
         cat conda_build_config.yaml
     - name: Install Conda
       run: |
@@ -31,7 +30,9 @@ jobs:
       run: |
         # We must use a new shell (new step) for Conda to take effect.
         source ~/.bash_profile
-        echo "path: $PATH"
         conda create -n packaging --channel conda-forge conda-build anaconda-client conda-verify
         conda activate packaging
-        conda-build --channel conda-forge recipe
+        conda config --set anaconda_upload yes
+        anaconda login --hostname github-actions-mac-$RANDOM --username ${{ secrets.ANACONDA_USERNAME }} --password ${{ secrets.ANACONDA_PASSWORD }}
+        conda-build --channel conda-forge --user underworldcode recipe
+        anaconda logout
