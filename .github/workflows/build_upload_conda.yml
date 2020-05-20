@@ -19,4 +19,4 @@ jobs:
             source /usr/share/miniconda/etc/profile.d/conda.sh
             conda create -n test --channel conda-forge conda-build anaconda-client conda-verify
             conda activate test
-            conda-build recipe
+            conda-build --channel conda-forge recipe
