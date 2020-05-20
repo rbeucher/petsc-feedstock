@@ -25,3 +25,5 @@ jobs:
       - name: Initialise Conda
         shell: bash -l {0}
         run: conda install --channel conda-forge conda-build
+      - name: Deploy Conda package
+        run: conda-build recipe
