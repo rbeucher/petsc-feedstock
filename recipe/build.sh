@@ -58,7 +58,7 @@ python ./configure \
   --with-blas-lib=libblas${SHLIB_EXT} \
   --with-lapack-lib=liblapack${SHLIB_EXT} \
   --with-hdf5=1 \
-  --with-hdf5-lib=[libhdf5${SHLIB_EXT}, libhdf5_hl${SHLIB_EXT}, libhdf5hl_fortran${SHLIB_EXT}, libhdf5_fortran${SHLIB_EXT}] \
+  --with-hdf5-lib=[libhdf5${SHLIB_EXT}, libhdf5-hl${SHLIB_EXT}, libhdf5hl-fortran${SHLIB_EXT}, libhdf5-fortran${SHLIB_EXT}] \
   --with-hwloc=0 \
   --with-hypre=1 \
   --with-metis=1 \
